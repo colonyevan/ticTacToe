@@ -64,8 +64,9 @@ Result Board::makeMove(int rowChoice, int colChoice) {
 void Board::changeStartingPlayer() {
     if (playerUp == Player1) {
         playerUp = Player2;
+    } else {
+        playerUp = Player1;
     }
-    playerUp = Player1;
 }
 
 PieceType Board::updateToMove() {
