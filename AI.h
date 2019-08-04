@@ -2,5 +2,8 @@
 
 
 class AI {
+public:
+    int getMove();
+private:
 
 };

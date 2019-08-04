@@ -7,16 +7,8 @@ CXX = g++
 # Compiler flags
 CXXFLAGS = --std=c++11 -Wall -Werror -pedantic -g
 
-main.exe: Main.cpp Board.cpp AI.cpp
+main.exe: Main.cpp Board.cpp AI.cpp Game.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
-
-test: Board_tests.exe /
-		AI_tests.exe
-
-		./Board_tests.exe
-		./AI_tests.exe
-
-Board_tests.exe: 
 
 # Disable built-in Makefile rules
 .SUFFIXES:

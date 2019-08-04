@@ -5,9 +5,10 @@
 #include "Board.h"
 
 // Libraries
+#include <iostream>
+#include <stdlib.h>
 #include <string>
 #include <time.h>
-#include <stdlib.h>
 
 struct choice {
     int rowChoice;
@@ -24,6 +25,13 @@ public:
      *           numTurns = 0
      */
     Game();
+
+    /*
+     * Requies: Nothing
+     * Modifies: *this
+     * Effects:  Adds the 2 palyers names;
+     *
+    getPlayerNames(); */
 
     /*
      * Requires: numTurns is initalized
@@ -63,6 +71,13 @@ public:
      */
     void playGame();
 
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects:  Returns the name of the indicated player
+     */
+    std::string getPlayerName(int player);
+
 private:
     Board gameBoard;
     int numTurns;
@@ -87,7 +102,7 @@ public:
      */
     virtual choice getPlay();
 
-private: 
+private:
     int numAI;
-    AI* theAI;
+    AI *theAI;
 };
