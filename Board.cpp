@@ -8,18 +8,9 @@ Board::Board() {
             position[i][j] = Empty;
         }
     }
-    playerUp = Player1;
-    numTurns = 0;
 }
 
-int Board::toMove() const {
-    if (playerUp == Player1) {
-        return 1;
-    }
-    return 2;
-}
-
-void Board::printBoard(std::ostream & stream) {
+void Board::printBoard(std::ostream &stream) {
     int count = 0;
 
     for (int i = 0; i < NUM_ROWS; i++) {
@@ -39,43 +30,27 @@ void Board::printBoard(std::ostream & stream) {
             count++;
         }
         if (i == 0 || i == 1) {
-            stream << endl << "     ---+---+---" << endl;
+            stream << endl
+                   << "     ---+---+---" << endl;
         }
     }
     stream << endl;
 }
 
-Result Board::makeMove(int rowChoice, int colChoice) {
-    if (position[rowChoice][colChoice] != Empty) {
+Result Board::makeMove(int rowChoice, int colChoice, PieceType mover) {
+    if (!inBounds(rowChoice, colChoice) ||
+        position[rowChoice][colChoice] != Empty) {
         return IllegalMove;
     }
 
-    position[rowChoice][colChoice] = updateToMove();
+    position[rowChoice][colChoice] = mover;
 
     if (isWin(rowChoice, colChoice)) {
         return Win;
     } else if (isBoardFull()) {
         return Draw;
     }
-    numTurns++;
     return NoResult;
-}
-
-void Board::changeStartingPlayer() {
-    if (playerUp == Player1) {
-        playerUp = Player2;
-    } else {
-        playerUp = Player1;
-    }
-}
-
-PieceType Board::updateToMove() {
-    if (playerUp == Player1) {
-        playerUp = Player2;
-        return Player1;
-    }
-    playerUp = Player1;
-    return Player2;
 }
 
 bool Board::inBounds(int row, int col) const {
@@ -110,24 +85,17 @@ int Board::piecesInDirection(int row, int col, int dRow, int dCol) const {
 
 bool Board::isWin(int row, int col) const {
     if ((piecesInDirection(row, col, 0, 1) +
-        piecesInDirection(row, col, 0, -1)) >= NUM_FOR_WIN - 1) {
+         piecesInDirection(row, col, 0, -1)) >= NUM_FOR_WIN - 1) {
         return true;
-    }
-    else if ((piecesInDirection(row, col, 1, 0) +
-        piecesInDirection(row, col, -1, 0)) >= NUM_FOR_WIN - 1) {
+    } else if ((piecesInDirection(row, col, 1, 0) +
+                piecesInDirection(row, col, -1, 0)) >= NUM_FOR_WIN - 1) {
         return true;
-    }
-    else if ((piecesInDirection(row, col, 1, 1) +
-        piecesInDirection(row, col, -1, -1)) >= NUM_FOR_WIN - 1) {
+    } else if ((piecesInDirection(row, col, 1, 1) +
+                piecesInDirection(row, col, -1, -1)) >= NUM_FOR_WIN - 1) {
         return true;
-    }
-    else if ((piecesInDirection(row, col, -1, 1) +
-        piecesInDirection(row, col, 1, -1)) >= NUM_FOR_WIN - 1) {
+    } else if ((piecesInDirection(row, col, -1, 1) +
+                piecesInDirection(row, col, 1, -1)) >= NUM_FOR_WIN - 1) {
         return true;
     }
     return false;
-}
-
-int Board::getNumTurns() const {
-    return numTurns;
 }

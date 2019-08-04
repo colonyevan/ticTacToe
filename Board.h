@@ -1,13 +1,19 @@
 #pragma once
 
+#include <exception>
 #include <ostream>
 
 enum PieceType {
-    Empty, Player1, Player2
+    Empty,
+    Player1,
+    Player2
 };
 
 enum Result {
-    IllegalMove, Win, Draw, NoResult
+    IllegalMove,
+    Win,
+    Draw,
+    NoResult
 };
 
 const int NUM_ROWS = 3,
@@ -21,7 +27,6 @@ const char PLAYER1_TOKEN = 'X',
 
 class Board {
 public:
-
     /*
      * Requires: Nothing
      * Modifies: *this
@@ -32,41 +37,18 @@ public:
     /*
      * Requires: Nothing
      * Modifies: Nothing
-     * Effects:  Returns the number of the player whose turn it is
-     */
-    int toMove() const;
-
-    /*
-     * Requires: Nothing
-     * Modifies: Nothing
      * Effects:  Prints the formated board to stream
      */
-    void printBoard(std::ostream & stream);
+    void printBoard(std::ostream &stream);
 
     /*
-     * Requires: 0 <= rowChoice < 3
-     *           0 <= colChoice < 3
+     * Requires: Nothing
      * Modifies: *this
      *           Changes the position array
-     * Effects:  Makes the player move if legal and updates the player turn
-     *           If illegal move does NOT update palyer turn and returns IllegalMove
+     * Effects:  Places mover at [rowChoice][colChoice]
+     *           Returns outcome of the move
      */
-    Result makeMove(int rowChoice, int colChoice);
-
-    /*
-     * Requires: Nothing
-     * Modifies: *this
-     * Effects:  changes the statrting player
-     */
-    void changeStartingPlayer();
-
-    /*
-     * Requires: Nothing
-     * Modifies: *this
-     * Effects:  Returns the player that is currently up then changes the 
-     *           playerUp to the next to move
-     */
-    PieceType updateToMove();
+    Result makeMove(int rowChoice, int colChoice, PieceType mover);
 
     /*
      * Requires: Nothing
@@ -98,22 +80,7 @@ public:
      */
     bool isWin(int row, int col) const;
 
-
-    /*
-     * Requires: Nothing
-     * Modifies: Nothing
-     * Effects:  Returns numTurns
-     */
-    int getNumTurns() const;
-
 private:
-    // Holds the player that is currently to play
-    PieceType playerUp;
-
     // Holds the board
     PieceType position[NUM_ROWS][NUM_COLS];
-
-    // Holds how many turns their have been
-    int numTurns;
 };
-

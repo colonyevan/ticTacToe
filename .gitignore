@@ -11,5 +11,6 @@
 *.lastbuildstate
 *.suo
 *.opendb
+.vscode
 
 Tic-Tac-Toe/*
