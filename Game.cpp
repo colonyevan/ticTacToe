@@ -57,6 +57,10 @@ string Game::getPlayerName(int player) {
     return (player == 1 ? p1Name : p2Name);
 }
 
+Board* Game::getGameBoard() {
+    return &gameBoard;
+}
+
 AIGame::AIGame(bool isAI, bool assign, int assignTo) : Game() {
     if (isAI) {
         if (assign) {
@@ -65,6 +69,7 @@ AIGame::AIGame(bool isAI, bool assign, int assignTo) : Game() {
             numAI = rand() % 2 + 1;
         }
     }
+    theAI = new simpleAI;
 }
 
 choice AIGame::getPlay() {
@@ -72,7 +77,7 @@ choice AIGame::getPlay() {
     int place;
 
     if (isAITurn) {
-        place = theAI->getMove();
+        place = theAI->getMove(getGameBoard());
 
     } else {
         cout << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
@@ -82,4 +87,8 @@ choice AIGame::getPlay() {
     place -=1;
 
     return {place / 3, place % 3};
+}
+
+AIGame::~AIGame() {
+    delete theAI;
 }

@@ -1,8 +1,11 @@
-#include "Board.h"
 #include "AI.h"
 
 using namespace std;
 
-int AI::getMove() {
-    return 1;
+AI::~AI() {
+}
+
+int simpleAI::getMove(Board *gameBoard) {
+    vector<int> openSpaces = gameBoard->getOpenSpaces();
+    return openSpaces[rand() % (openSpaces.size() - 1)];
 }

@@ -78,6 +78,13 @@ public:
      */
     std::string getPlayerName(int player);
 
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects:  Returns a pointer to the game board
+     */
+    Board *getGameBoard();
+
 private:
     Board gameBoard;
     int numTurns;
@@ -101,6 +108,8 @@ public:
      *           Otherise prompts for position
      */
     virtual choice getPlay();
+
+    ~AIGame();
 
 private:
     int numAI;

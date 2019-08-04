@@ -2,6 +2,7 @@
 
 #include <exception>
 #include <ostream>
+#include <vector>
 
 enum PieceType {
     Empty,
@@ -79,6 +80,13 @@ public:
      * Effects: Returns true if the piece at that location created a win
      */
     bool isWin(int row, int col) const;
+
+    /*
+     * Requries: Board is not full
+     * Modifies: Nothing
+     * Effects: Returns all the open spaces on the board
+     */
+    std::vector<int> getOpenSpaces();
 
 private:
     // Holds the board
