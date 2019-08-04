@@ -54,6 +54,7 @@ void AIPlay() {
     string trash = "";
     int rowChoice;
     int colChoice;
+    AI* theAI;
 
     // Prepares the game board
     currentBoard = getBoardAI(player1Name);
@@ -110,10 +111,12 @@ void AIPlay() {
         }
     }
 
+    cout << endl << endl << endl << endl;
+    currentBoard.printBoard(cout);
     // Reached at end of game and notifies of outcome
     if (moveResult == Win) {
         cout << "Congratulations ";
-        if (currentBoard.toMove() == 1) {
+        if (currentBoard.toMove() == 2) {
             cout << player1Name;
         } else {
             cout << "AI";
@@ -122,8 +125,7 @@ void AIPlay() {
     } else {
         cout << "Draw! " << endl;
     }
-    // Prints final board
-    currentBoard.printBoard(cout);
+
     return;
 }
 
@@ -189,19 +191,21 @@ void terminalPlay() {
         }
     }
 
+
+    cout << endl << endl << endl << endl;
+    currentBoard.printBoard(cout);
     // Ends game and notifies of results
     if (moveResult == Win) {
-        cout << "Congratulations ";
+        cout << "Congratulations, ";
         if (currentBoard.toMove() == 1) {
-            cout << player1Name;
-        } else {
             cout << player2Name;
+        } else {
+            cout << player1Name;
         }
         cout << "! You win! " << endl;
     } else {
         cout << "Draw! " << endl;
     }
-    currentBoard.printBoard(cout);
     return;
 }
 

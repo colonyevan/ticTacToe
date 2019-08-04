@@ -127,3 +127,7 @@ bool Board::isWin(int row, int col) const {
     }
     return false;
 }
+
+int Board::getNumTurns() const {
+    return numTurns;
+}

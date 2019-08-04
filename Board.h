@@ -23,9 +23,9 @@ class Board {
 public:
 
     /*
-     * REquires: Nothing
+     * Requires: Nothing
      * Modifies: *this
-     * Effects: Constructs the board with no pieces played
+     * Effects: Constructs the board with no pieces played and sets numTurns to 0
      */
     Board();
 
@@ -98,6 +98,15 @@ public:
      */
     bool isWin(int row, int col) const;
 
+
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects:  Returns numTurns
+     */
+    int getNumTurns() const;
+
+private:
     // Holds the player that is currently to play
     PieceType playerUp;
 
