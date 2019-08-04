@@ -103,8 +103,8 @@ bool Board::isWin(int row, int col) const {
 vector<int> Board::getOpenSpaces() {
     vector<int> spaces;
     for (int i = 0; i < 9; ++i) {
-        if (position[i / 3][3 % 3] == Empty) {
-            spaces.push_back(i);
+        if (position[i / 3][i % 3] == Empty) {
+            spaces.push_back(i + 1);
         }
     }
     return spaces;
