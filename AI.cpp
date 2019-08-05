@@ -9,7 +9,6 @@ AI::~AI() {
 
 int simpleAI::getMove(Board *gameBoard, PieceType token) {
     vector<int> openSpaces = gameBoard->getOpenSpaces();
-    assert(openSpaces.size() != 0);
     int choice = openSpaces[rand() % openSpaces.size()];
     cout << "The AI chose " << choice << endl;
     return choice;
@@ -19,11 +18,18 @@ int mediumAI::getMove(Board *gameBoard, PieceType token) {
     vector<int> openSpaces = gameBoard->getOpenSpaces();
     Result temp = NoResult;
     int move;
-    Board tempBoard = *gameBoard;
 
     for (size_t i = 0; i < openSpaces.size() && (temp != Win && temp != Draw); ++i) {
-        move = i;
+        move = openSpaces[i];
+        Board tempBoard = *gameBoard;
         temp = tempBoard.makeMove(move / 3, move % 3, token);
+    }
+
+    if (temp == IllegalMove) {
+        vector<int> openSpaces = gameBoard->getOpenSpaces();
+        int choice = openSpaces[rand() % openSpaces.size()];
+        cout << "The AI chose " << choice << endl;
+        return choice;
     }
 
     cout << "The AI chose " << move << endl;

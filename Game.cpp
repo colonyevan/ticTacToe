@@ -95,7 +95,7 @@ choice AIGame::getPlay() {
     int place;
 
     if (isAITurn) {
-        place = theAI->getMove(getGameBoard(), (getPlayerTurn() == 1 ? Player1 : Player2));
+        place = theAI->getMove(getGameBoard(), (numAI == 1 ? Player1 : Player2));
     } else {
         cout << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
         cin >> place;
