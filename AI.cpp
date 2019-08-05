@@ -14,3 +14,7 @@ int simpleAI::getMove(Board *gameBoard) {
     cout << "The AI chose " << choice << endl;
     return choice;
 }
+
+int mediumAI::getMove(Board *gameBoard) {
+    vector<int> openSpaces = gameBoard->getOpenSpaces();
+}

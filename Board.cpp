@@ -72,7 +72,7 @@ bool Board::isBoardFull() const {
 }
 
 int Board::piecesInDirection(int row, int col, int dRow, int dCol) const {
-    int count = -1;
+    int count = 0;
     PieceType checkingFor = position[row][col];
 
     while (inBounds(row, col) && position[row][col] == checkingFor) {
@@ -85,16 +85,16 @@ int Board::piecesInDirection(int row, int col, int dRow, int dCol) const {
 
 bool Board::isWin(int row, int col) const {
     if ((piecesInDirection(row, col, 0, 1) +
-         piecesInDirection(row, col, 0, -1)) >= NUM_FOR_WIN - 1) {
+         piecesInDirection(row, col, 0, -1)) >= NUM_FOR_WIN) {
         return true;
     } else if ((piecesInDirection(row, col, 1, 0) +
-                piecesInDirection(row, col, -1, 0)) >= NUM_FOR_WIN - 1) {
+                piecesInDirection(row, col, -1, 0)) >= NUM_FOR_WIN) {
         return true;
     } else if ((piecesInDirection(row, col, 1, 1) +
-                piecesInDirection(row, col, -1, -1)) >= NUM_FOR_WIN - 1) {
+                piecesInDirection(row, col, -1, -1)) >= NUM_FOR_WIN) {
         return true;
     } else if ((piecesInDirection(row, col, -1, 1) +
-                piecesInDirection(row, col, 1, -1)) >= NUM_FOR_WIN - 1) {
+                piecesInDirection(row, col, 1, -1)) >= NUM_FOR_WIN) {
         return true;
     }
     return false;

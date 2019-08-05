@@ -15,5 +15,9 @@ public:
 };
 
 class simpleAI : public AI {
-    int getMove(Board *gameBoar);
+    int getMove(Board *gameBoard);
+};
+
+class mediumAI : public AI {
+    int getMove(Board *gameBoard);
 };

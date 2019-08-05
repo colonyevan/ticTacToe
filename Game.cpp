@@ -79,7 +79,7 @@ Board *Game::getGameBoard() {
     return &gameBoard;
 }
 
-AIGame::AIGame(bool isAI, bool assign, int assignTo) : Game() {
+AIGame::AIGame(bool isAI, int level, bool assign, int assignTo) : Game() {
     if (isAI) {
         if (assign) {
             numAI = assignTo;

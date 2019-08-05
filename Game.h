@@ -106,7 +106,7 @@ public:
      * Modifies: *this
      * Effects:  If isAI and assign are true assignTo must be either 1 or 2;
      */
-    AIGame(bool isAI, bool assign = false, int assignTo = 0);
+    AIGame(bool isAI, int level, bool assign = false, int assignTo = 0);
 
     /*
      * Requires: Nothing
