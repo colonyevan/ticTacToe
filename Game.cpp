@@ -87,7 +87,7 @@ AIGame::AIGame(bool isAI, int level, bool assign, int assignTo) : Game() {
             numAI = rand() % 2 + 1;
         }
     }
-    theAI = new simpleAI;
+    theAI = AIFactory(level);
 }
 
 choice AIGame::getPlay() {
@@ -95,7 +95,7 @@ choice AIGame::getPlay() {
     int place;
 
     if (isAITurn) {
-        place = theAI->getMove(getGameBoard());
+        place = theAI->getMove(getGameBoard(), (getPlayerTurn() == 1 ? Player1 : Player2));
     } else {
         cout << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
         cin >> place;

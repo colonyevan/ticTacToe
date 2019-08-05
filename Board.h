@@ -40,6 +40,13 @@ public:
      * Modifies: Nothing
      * Effects:  Prints the formated board to stream
      */
+    Board(const Board &inputBoard);
+
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects:  Prints the formated board to stream
+     */
     void printBoard(std::ostream &stream);
 
     /*
