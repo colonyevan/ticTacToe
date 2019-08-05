@@ -5,6 +5,22 @@ using namespace std;
 Game::Game() : gameBoard(Board()), numTurns(0), p1Name("Alice"), p2Name("Bob") {
 }
 
+void Game::getPlayerNames() {
+    cout << "Player 1, please enter your name: ";
+    cin >> p1Name;
+    cout << "Player 2, please enter your name: ";
+    cin >> p2Name;
+    return;
+}
+
+void Game::setPlayerName(int player, string nameIn) {
+    if (player == 1) {
+        p1Name = nameIn;
+    } else {
+        p2Name = nameIn;
+    }
+}
+
 int Game::getNumTurns() const {
     return numTurns;
 }
@@ -41,6 +57,8 @@ choice Game::getPlay() {
 void Game::playGame() {
     Result condition = NoResult;
 
+    getPlayerNames();
+
     while (condition == NoResult || condition == IllegalMove) {
         condition = makeMove();
     }
@@ -49,7 +67,7 @@ void Game::playGame() {
         cout << "There was a draw, no one won! " << endl;
         return;
     } else {
-        cout << (getPlayerTurn() == 1 ? p2Name : p1Name) << ", you won. Congratulations! ";
+        cout << (getPlayerTurn() == 1 ? p2Name : p1Name) << ", you won. Congratulations! " << endl;
     }
 }
 
@@ -57,7 +75,7 @@ string Game::getPlayerName(int player) {
     return (player == 1 ? p1Name : p2Name);
 }
 
-Board* Game::getGameBoard() {
+Board *Game::getGameBoard() {
     return &gameBoard;
 }
 
@@ -78,15 +96,30 @@ choice AIGame::getPlay() {
 
     if (isAITurn) {
         place = theAI->getMove(getGameBoard());
-
     } else {
         cout << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
         cin >> place;
     }
 
-    place -=1;
+    place -= 1;
 
     return {place / 3, place % 3};
+}
+
+void AIGame::getPlayerNames() {
+    string temp;
+    if (numAI == 1) {
+        cout << "You are player 2, please enter your name: ";
+        cin >> temp;
+        setPlayerName(2, temp);
+        setPlayerName(1, "AI");
+    } else {
+        cout << "You are player 1, please enter your name: ";
+        cin >> temp;
+        setPlayerName(1, temp);
+        setPlayerName(2, "AI");
+    }
+    return;
 }
 
 AIGame::~AIGame() {

@@ -27,11 +27,18 @@ public:
     Game();
 
     /*
-     * Requies: Nothing
+     * Requries: Nothing
      * Modifies: *this
      * Effects:  Adds the 2 palyers names;
-     *
-    getPlayerNames(); */
+     */
+    virtual void getPlayerNames();
+
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects:  Set the player name in the correct number
+     */
+    void setPlayerName(int player, std::string nameIn);
 
     /*
      * Requires: numTurns is initalized
@@ -108,6 +115,13 @@ public:
      *           Otherise prompts for position
      */
     virtual choice getPlay();
+
+    /*
+     * Requires: Nothing
+     * Modifies: *this
+     * Effects:  Gets the player's name and the AI and palces them in the right name
+     */
+    virtual void getPlayerNames();
 
     ~AIGame();
 
