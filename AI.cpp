@@ -1,6 +1,6 @@
 #include "AI.h"
-#include <cassert>
-#include <iostream>
+#include <iostream> // std::cout
+#include <algorithm> // std::max and std::min
 
 using namespace std;
 
@@ -38,11 +38,45 @@ int mediumAI::getMove(Board *gameBoard, PieceType token) {
 }
 
 int hardAI::getMove(Board *gameBoard, PieceType token) {
-    vector<int> openSpaces = gameBoard->getOpenSpaces();
-    assert(openSpaces.size() != 0);
-    int choice = openSpaces[rand() % openSpaces.size()];
-    cout << "The AI chose " << choice << endl;
-    return choice;
+    vector<int> spaces = gameBoard->getOpenSpaces();
+    int currentMove = 0;
+    int currentScore = 0;
+    
+    for (auto i : spaces) {
+        int tempVal = minimax(*gameBoard, true);
+        if (tempVal >= currentScore) {
+            currentMove = i;
+            currentScore = tempVal;
+        }
+    }
+
+    return currentMove;
+}
+
+int hardAI::minimax(Board gameBoard, bool maxer) {
+    vector<int> spaces = gameBoard.getOpenSpaces();
+
+    if (spaces.size() == 1) {
+        Board temp = gameBoard;
+        Result result = temp.makeMove((spaces[0] - 1) / 3, (spaces[0] - 1) % 3, Player1);
+        return (result == Win ? 1 : -1);
+    } else if (maxer) {
+        int value = -100;
+        for (auto i : spaces) {
+            Board temp = gameBoard;
+            temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player1 : Player2));
+            value = max(value, minimax(temp, false));
+        }
+        return value;
+    } else {
+        int value = 100;
+        for (auto i : spaces) {
+            Board temp = gameBoard;
+            temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player1 : Player2));
+            value = min(value, minimax(temp, true));
+        }
+        return value;
+    }
 }
 
 AI *AIFactory(int level) {
