@@ -12,5 +12,6 @@
 *.suo
 *.opendb
 .vscode
+.vs
 
 Tic-Tac-Toe/*
