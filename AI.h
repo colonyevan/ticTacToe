@@ -25,7 +25,7 @@ class mediumAI : public AI {
 class hardAI : public AI {
     int getMove(Board *gameBoard, PieceType token);
 
-    int minimax(Board gameBoard, bool maxer);
+    int minimax(Board gameBoard, bool maxer, PieceType token);
 };
 
 AI * AIFactory(int level);

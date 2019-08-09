@@ -1,6 +1,6 @@
 #include "AI.h"
-#include <iostream> // std::cout
 #include <algorithm> // std::max and std::min
+#include <iostream>  // std::cout
 
 using namespace std;
 
@@ -41,39 +41,50 @@ int hardAI::getMove(Board *gameBoard, PieceType token) {
     vector<int> spaces = gameBoard->getOpenSpaces();
     int currentMove = 0;
     int currentScore = 0;
-    
+
     for (auto i : spaces) {
-        int tempVal = minimax(*gameBoard, true);
+        int tempVal = minimax(*gameBoard, true, token);
         if (tempVal >= currentScore) {
             currentMove = i;
             currentScore = tempVal;
         }
     }
 
+    cout << "The AI choose " << currentMove << endl;
+
     return currentMove;
 }
 
-int hardAI::minimax(Board gameBoard, bool maxer) {
+int hardAI::minimax(Board gameBoard, bool maxer, PieceType token) {
     vector<int> spaces = gameBoard.getOpenSpaces();
 
     if (spaces.size() == 1) {
         Board temp = gameBoard;
         Result result = temp.makeMove((spaces[0] - 1) / 3, (spaces[0] - 1) % 3, Player1);
-        return (result == Win ? 1 : -1);
+        if (result == Draw) {
+            return 0;
+        }
+        return ((result == Win && token == Player1) ? 1 : -1);
     } else if (maxer) {
         int value = -100;
         for (auto i : spaces) {
             Board temp = gameBoard;
-            temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player1 : Player2));
-            value = max(value, minimax(temp, false));
+            Result res = temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player2 : Player1));
+            if (res == Win) {
+                return -1;
+            }
+            value = max(value, minimax(temp, false, token));
         }
         return value;
     } else {
         int value = 100;
         for (auto i : spaces) {
             Board temp = gameBoard;
-            temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player1 : Player2));
-            value = min(value, minimax(temp, true));
+            Result res = temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player2 : Player1));
+            if (res == Win) {
+                return 1;
+            }
+            value = min(value, minimax(temp, true, token));
         }
         return value;
     }
