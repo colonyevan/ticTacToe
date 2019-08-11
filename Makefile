@@ -10,6 +10,12 @@ CXXFLAGS = --std=c++11 -Wall -Werror -pedantic -g
 main.exe: Main.cpp Board.cpp AI.cpp Game.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+test: Board_tests.exe
+	./Board_tests.exe
+
+Board_tests.exe: Board.cpp Board_test.cpp unit_test_framework.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 # Disable built-in Makefile rules
 .SUFFIXES:
 

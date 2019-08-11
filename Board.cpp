@@ -17,6 +17,16 @@ Board::Board(const Board &inputBoard) {
     }
 }
 
+Board::Board(string input) : Board() {
+    for (size_t i = 0; i < input.length(); ++i) {
+        if (input[i] == 'X') {
+            position[i / 3][i % 3] = Player1;
+        } else if (input[i] == 'O') {
+            position[i / 3][i % 3] = Player2;
+        }
+    }
+}
+
 void Board::printBoard(std::ostream &stream) {
     int count = 0;
 
@@ -61,7 +71,7 @@ Result Board::makeMove(int rowChoice, int colChoice, PieceType mover) {
 }
 
 bool Board::inBounds(int row, int col) const {
-    if (row > 3 || col > 3 || col < 0 || row < 0) {
+    if (row > 2 || col > 2 || col < 0 || row < 0) {
         return false;
     }
     return true;

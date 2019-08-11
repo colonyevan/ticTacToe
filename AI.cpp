@@ -71,7 +71,7 @@ int hardAI::minimax(Board gameBoard, bool maxer, PieceType token) {
             Board temp = gameBoard;
             Result res = temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player2 : Player1));
             if (res == Win) {
-                return -1;
+                return 1;
             }
             value = max(value, minimax(temp, false, token));
         }
@@ -82,7 +82,7 @@ int hardAI::minimax(Board gameBoard, bool maxer, PieceType token) {
             Board temp = gameBoard;
             Result res = temp.makeMove((i - 1) / 3, (i - 1) % 3, ((spaces.size() % 2) == 0 ? Player2 : Player1));
             if (res == Win) {
-                return 1;
+                return -1;
             }
             value = min(value, minimax(temp, true, token));
         }

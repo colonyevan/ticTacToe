@@ -2,6 +2,7 @@
 
 #include <exception>
 #include <ostream>
+#include <string>
 #include <vector>
 
 enum PieceType {
@@ -41,6 +42,16 @@ public:
      * Effects:  Prints the formated board to stream
      */
     Board(const Board &inputBoard);
+
+    /*
+     * Requires: input is exaclty nine chars long
+     * Modifies: Nothing
+     * Effects:  Makes a baord according to the input string
+     *           X = X
+     *           O = O
+     *           E = ""
+     */
+    Board(std::string input);
 
     /*
      * Requires: Nothing
