@@ -20,7 +20,7 @@ test: Board_tests.exe \
 Board_tests.exe: Board.cpp Board_test.cpp unit_test_framework.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-Game_tests.exe: Game.cpp unit_test_framework.cpp Game_test.cpp
+Game_tests.exe: Game.cpp unit_test_framework.cpp Game_test.cpp AI.cpp Board.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Disable built-in Makefile rules

@@ -31,7 +31,7 @@ int Game::getPlayerTurn() const {
 
 Result Game::makeMove(istream &input, ostream &output) {
     gameBoard.printBoard(output);
-    choice temp = getPlay();
+    choice temp = getPlay(input, output);
 
     Result result = gameBoard.makeMove(temp.rowChoice, temp.colChoice, getPlayerTurn() == 1 ? Player1 : Player2);
     if (result != IllegalMove) {
