@@ -31,7 +31,7 @@ public:
      * Modifies: *this
      * Effects:  Adds the 2 palyers names;
      */
-    virtual void getPlayerNames();
+    virtual void getPlayerNames(std::istream &istream=std::cin, std::ostream &ostream=std::cout);
 
     /*
      * Requires: Nothing

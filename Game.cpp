@@ -5,11 +5,11 @@ using namespace std;
 Game::Game() : gameBoard(Board()), numTurns(0), p1Name("Alice"), p2Name("Bob") {
 }
 
-void Game::getPlayerNames() {
-    cout << "Player 1, please enter your name: ";
-    cin >> p1Name;
-    cout << "Player 2, please enter your name: ";
-    cin >> p2Name;
+void Game::getPlayerNames(istream &istream, ostream &ostream) {
+    ostream << "Player 1, please enter your name: ";
+    istream >> p1Name;
+    ostream << "Player 2, please enter your name: ";
+    istream >> p2Name;
     return;
 }
 
