@@ -29,25 +29,25 @@ int Game::getPlayerTurn() const {
     return getNumTurns() % 2 + 1;
 }
 
-Result Game::makeMove() {
-    gameBoard.printBoard(cout);
+Result Game::makeMove(istream &input, ostream &output) {
+    gameBoard.printBoard(output);
     choice temp = getPlay();
 
     Result result = gameBoard.makeMove(temp.rowChoice, temp.colChoice, getPlayerTurn() == 1 ? Player1 : Player2);
     if (result != IllegalMove) {
         ++numTurns;
     } else {
-        cout << "That was an illegal move, try again! " << endl;
+        output << "That was an illegal move, try again! " << endl;
     }
     return result;
 }
 
-choice Game::getPlay() {
+choice Game::getPlay(istream &input, ostream &output) {
     string name = getPlayerTurn() == 1 ? p1Name : p2Name;
     int place;
 
-    cout << name << ", please enter your move: " << flush;
-    cin >> place;
+    output << name << ", please enter your move: ";
+    input >> place;
 
     place -= 1;
 

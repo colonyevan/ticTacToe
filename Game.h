@@ -62,14 +62,14 @@ public:
      *           If move is illegal states the move is illegal
      *           Returns result of move
      */
-    Result makeMove();
+    Result makeMove(std::istream &input=std::cin, std::ostream &output=std::cout);
 
     /*
      * Requires: Nothing
      * Modifies: Nothing
      * Effects:  Gets player input and returns, does not validate and does not actually make move
      */
-    virtual choice getPlay();
+    virtual choice getPlay(std::istream &input=std::cin, std::ostream &output=std::cout);
 
     /*
      * Requires: Nothing

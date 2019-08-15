@@ -8,7 +8,7 @@ int main() {
     srand(time(NULL));
     int choice, level;
     Game *theGame;
-    cout << " Would you like to play 1 or 2 player Tic-Tac-Toe (1/2): " << flush;
+    cout << " Would you like to play 1 or 2 player Tic-Tac-Toe (1/2): ";
     cin >> choice;
 
     if (choice == 1) {

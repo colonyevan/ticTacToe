@@ -32,7 +32,12 @@ TEST(testGetPlayerNames) {
 TEST(testGetPlayerTurn) {
     Game g1;
 
+    ostringstream trash;
+    istringstream input("Alice Bob");
+
     ASSERT_EQUAL(g1.getPlayerTurn(), 1);
+    g1.makeMove();
+    ASSERT_EQUAL(g1.getPlayerTurn(), 2);
 }
 
 TEST_MAIN()
