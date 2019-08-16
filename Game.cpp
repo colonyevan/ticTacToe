@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Game::Game() : gameBoard(Board()), numTurns(0), p1Name("Alice"), p2Name("Bob") {
+Game::Game() : gameBoard(Board()), numTurns(0) {
 }
 
 void Game::getPlayerNames(istream &istream, ostream &ostream) {
