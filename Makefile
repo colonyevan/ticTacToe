@@ -23,6 +23,9 @@ Board_tests.exe: Board.cpp Board_test.cpp unit_test_framework.cpp
 Game_tests.exe: Game.cpp unit_test_framework.cpp Game_test.cpp AI.cpp Board.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+AI_tests.exe: AI.cpp Board.cpp unit_test_framework.cpp AI_tests.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 # Disable built-in Makefile rules
 .SUFFIXES:
 

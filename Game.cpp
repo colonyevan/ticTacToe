@@ -93,15 +93,15 @@ AIGame::AIGame(bool isAI, int level, bool assign, int assignTo) : Game() {
     theAI = AIFactory(level);
 }
 
-choice AIGame::getPlay() {
+choice AIGame::getPlay(istream &istream, ostream &ostream) {
     bool isAITurn = getPlayerTurn() == numAI;
     int place;
 
     if (isAITurn) {
         place = theAI->getMove(getGameBoard(), (numAI == 1 ? Player1 : Player2));
     } else {
-        cout << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
-        cin >> place;
+        ostream << getPlayerName(getPlayerTurn()) << ", please enter your move: ";
+        istream >> place;
     }
 
     place -= 1;
@@ -109,16 +109,16 @@ choice AIGame::getPlay() {
     return {place / 3, place % 3};
 }
 
-void AIGame::getPlayerNames() {
+void AIGame::getPlayerNames(istream &istream, ostream &ostream) {
     string temp;
     if (numAI == 1) {
-        cout << "You are player 2, please enter your name: ";
-        cin >> temp;
+        ostream << "You are player 2, please enter your name: ";
+        istream >> temp;
         setPlayerName(2, temp);
         setPlayerName(1, "AI");
     } else {
-        cout << "You are player 1, please enter your name: ";
-        cin >> temp;
+        ostream << "You are player 1, please enter your name: ";
+        istream >> temp;
         setPlayerName(1, temp);
         setPlayerName(2, "AI");
     }

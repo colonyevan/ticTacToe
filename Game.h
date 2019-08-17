@@ -123,14 +123,14 @@ public:
      * Effects:  Returns thr turn of the player. If it is an AI says where played
      *           Otherise prompts for position
      */
-    virtual choice getPlay();
+    virtual choice getPlay(std::istream &istream = std::cin, std::ostream &ostream = std::cout);
 
     /*
      * Requires: Nothing
      * Modifies: *this
      * Effects:  Gets the player's name and the AI and palces them in the right name
      */
-    virtual void getPlayerNames();
+    virtual void getPlayerNames(std::istream &istream = std::cin, std::ostream &ostream = std::cout);
 
     ~AIGame();
 

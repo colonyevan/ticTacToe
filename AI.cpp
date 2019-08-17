@@ -43,7 +43,9 @@ int hardAI::getMove(Board *gameBoard, PieceType token) {
     int currentScore = 0;
 
     for (auto i : spaces) {
-        int tempVal = minimax(*gameBoard, true, token);
+        Board tempBoard(*gameBoard);
+        tempBoard.makeMove((i - 1) / 3, (i - 1) % 3, token);
+        int tempVal = minimax(tempBoard, false, token);
         if (tempVal >= currentScore) {
             currentMove = i;
             currentScore = tempVal;
