@@ -7,7 +7,7 @@ using namespace std;
 TEST(testWinningMove) {
     Board b1("XOOEXEEXO");
 
-    AI* test = AIFactory(3);
+    AI *test = AIFactory(3);
 
     int result = test->getMove(&b1, Player1);
 
@@ -19,7 +19,7 @@ TEST(testWinningMove) {
 TEST(testWinningMoveTwo) {
     Board b1("XEXEOEEOX");
 
-    AI* test = AIFactory(3);
+    AI *test = AIFactory(3);
 
     int result = test->getMove(&b1, Player2);
 
