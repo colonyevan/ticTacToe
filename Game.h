@@ -27,11 +27,20 @@ public:
     Game();
 
     /*
+     * Requires: String is properly formated
+     * Modifies: *this
+     * Effects:  Initalizes the game with a board in the form of the input string
+     *           gameBoard = standard Board
+     *           numTurns = turns
+     */
+    Game(std::string input, int turns);
+
+    /*
      * Requries: Nothing
      * Modifies: *this
      * Effects:  Adds the 2 palyers names;
      */
-    virtual void getPlayerNames(std::istream &istream=std::cin, std::ostream &ostream=std::cout);
+    virtual void getPlayerNames(std::istream &istream = std::cin, std::ostream &ostream = std::cout);
 
     /*
      * Requires: Nothing
@@ -62,14 +71,14 @@ public:
      *           If move is illegal states the move is illegal
      *           Returns result of move
      */
-    Result makeMove(std::istream &input=std::cin, std::ostream &output=std::cout);
+    Result makeMove(std::istream &input = std::cin, std::ostream &output = std::cout);
 
     /*
      * Requires: Nothing
      * Modifies: Nothing
      * Effects:  Gets player input and returns, does not validate and does not actually make move
      */
-    virtual choice getPlay(std::istream &input=std::cin, std::ostream &output=std::cout);
+    virtual choice getPlay(std::istream &input = std::cin, std::ostream &output = std::cout);
 
     /*
      * Requires: Nothing

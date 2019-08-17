@@ -5,6 +5,9 @@ using namespace std;
 Game::Game() : gameBoard(Board()), numTurns(0) {
 }
 
+Game::Game(string input, int turns) : gameBoard(Board(input)), numTurns(turns) {
+}
+
 void Game::getPlayerNames(istream &istream, ostream &ostream) {
     ostream << "Player 1, please enter your name: ";
     istream >> p1Name;

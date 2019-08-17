@@ -40,10 +40,11 @@ TEST(testGetPlayerTurn) {
     ASSERT_EQUAL(g1.getPlayerTurn(), 2);
 }
 
-TEST(testMakeMove) {
+TEST(testMakeMoveStart) {
     Game g1;
     istringstream starter("Alice Bob");
-    g1.getPlayerNames(starter);
+    ostringstream trash;
+    g1.getPlayerNames(starter, trash);
     ostringstream output;
     ostringstream expected;
     istringstream input("1");
@@ -54,7 +55,7 @@ TEST(testMakeMove) {
              << "      4 | 5 | 6" << endl
              << "     ---+---+---" << endl
              << "      7 | 8 | 9" << endl
-             << "Alice, please enter your move: " << endl;
+             << "Alice, please enter your move: ";
     ASSERT_EQUAL(expected.str(), output.str());
     ASSERT_EQUAL(g1.getNumTurns(), 1);
     ASSERT_EQUAL(NoResult, test);
@@ -71,7 +72,7 @@ TEST(testMakeMove) {
              << "      4 | 5 | 6" << endl
              << "     ---+---+---" << endl
              << "      7 | 8 | 9" << endl
-             << "Bob, please enter your move: " << endl;
+             << "Bob, please enter your move: ";
     ASSERT_EQUAL(expected.str(), output.str());
     ASSERT_EQUAL(g1.getNumTurns(), 2);
     ASSERT_EQUAL(NoResult, test);
@@ -83,16 +84,39 @@ TEST(testMakeMove) {
 
     test = g1.makeMove(input, output);
 
-    expected << "      X | 2 | 3" << endl
+    expected << "      X | O | 3" << endl
              << "     ---+---+---" << endl
              << "      4 | 5 | 6" << endl
              << "     ---+---+---" << endl
              << "      7 | 8 | 9" << endl
              << "Alice, please enter your move: "
-             << "That as an ilegal move, try again! " << endl;
+             << "That was an illegal move, try again! " << endl;
     ASSERT_EQUAL(expected.str(), output.str());
     ASSERT_EQUAL(g1.getNumTurns(), 2);
     ASSERT_EQUAL(IllegalMove, test);
+}
+
+TEST(testMakeMoveEnd) {
+    Game g1("EXXEEEEEE", 2);
+
+    istringstream starter("Alice Bob");
+    g1.getPlayerNames(starter);
+    
+    ostringstream output;
+    ostringstream expected;
+    istringstream input("1");
+    Result test = g1.makeMove(input, output);
+
+    expected << "      1 | X | X" << endl
+             << "     ---+---+---" << endl
+             << "      4 | 5 | 6" << endl
+             << "     ---+---+---" << endl
+             << "      7 | 8 | 9" << endl
+             << "Alice, please enter your move: ";
+
+             ASSERT_EQUAL(expected.str(), output.str());
+    ASSERT_EQUAL(g1.getNumTurns(), 3);
+    ASSERT_EQUAL(Win, test);
 }
 
 TEST_MAIN()
