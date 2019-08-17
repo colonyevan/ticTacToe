@@ -16,5 +16,5 @@ Currently, I feel that my implementation of the minimax algo is somewhat sloppy.
 ## Futre plans
 1. Implement a leaderboard that maintains state using a csv file.
 
-## Atributinos
+## Attributions
 The unit testing framework used in this project is taken from the Univeristy of Michigan EECS 280 class, developed by the professors and reflects none of my own work.
