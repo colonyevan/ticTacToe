@@ -40,12 +40,15 @@ int mediumAI::getMove(Board *gameBoard, PieceType token) {
 int hardAI::getMove(Board *gameBoard, PieceType token) {
     vector<int> spaces = gameBoard->getOpenSpaces();
     int currentMove = 0;
-    int currentScore = 0;
+    int currentScore = -100;
 
     for (auto i : spaces) {
-        Board tempBoard(*gameBoard);
-        tempBoard.makeMove((i - 1) / 3, (i - 1) % 3, token);
-        int tempVal = minimax(tempBoard, false, token);
+        Board temp = *gameBoard;
+        Result res = temp.makeMove((i - 1) / 3, (i - 1) % 3, token);
+        if (res == Win || res == Draw) {
+            return i;
+        }
+        int tempVal = minimax(temp, false, token);
         if (tempVal >= currentScore) {
             currentMove = i;
             currentScore = tempVal;
@@ -60,7 +63,7 @@ int hardAI::getMove(Board *gameBoard, PieceType token) {
 int hardAI::minimax(Board gameBoard, bool maxer, PieceType token) {
     vector<int> spaces = gameBoard.getOpenSpaces();
 
-    if (spaces.size() == 1) {
+    if (spaces.size() <= 1) {
         Board temp = gameBoard;
         Result result = temp.makeMove((spaces[0] - 1) / 3, (spaces[0] - 1) % 3, Player1);
         if (result == Draw) {
