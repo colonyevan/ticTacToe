@@ -14,6 +14,7 @@ There are three types of AI:
 Currently, I feel that my implementation of the minimax algo is somewhat sloppy. While it works properly and quickly the issue is that the AI is currently spread across two different functions. One function makes the play that it is testing and if it is a win and the other function handles all the rest. I think there should be a way to simplify this. However, given that it is functional and fast in its current state, I will progess on to differet projects before coming back to this one.
 
 ## Future plans
+0. (Suggested by Nicole) Add colors to make it better
 1. Implement a leaderboard that maintains state using a csv file.
 
 ## Attributions
